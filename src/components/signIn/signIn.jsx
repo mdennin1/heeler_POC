@@ -3,6 +3,7 @@ import { signInWithGoogle } from '../../firebase/firebase';
 import ACTIONS from '../../constants/actions.js';
 import Btn from '../../components/btn/btn';
 import FormInput from '../../components/formInput/formInput';
+import './signIn.scss';
 //
 const reducer = (state, action) => {
     console.log(`action: ${JSON.stringify(action)}`);
@@ -17,14 +18,14 @@ const reducer = (state, action) => {
 const SignIn = (props) => {
     const [state, dispatch] = useReducer(reducer, {});
     useEffect(()=>{
-        console.log(`%cprops: ${JSON.stringify(props)}, state: ${JSON.stringify(state)}`, 'color:red;');
+        console.log(`%cprops: ${JSON.stringify(props)}, state: ${JSON.stringify(state)}`, 'color:blue;');
     }, [state]);
     return (
         <div className='sign-in'>
             <h2>I already have an account</h2>
-            <span>{`Sign in with email & password`}</span>
+            <span>{`Sign in with username & password`}</span>
             <form>
-                <FormInput label='Email' name={ACTIONS.username} type='email' value={state.username} dispatch={dispatch} />
+                <FormInput label='Username' name={ACTIONS.username} type='text' value={state.username} dispatch={dispatch} />
                 <FormInput label="Password" name='password' type='password' value={state.password} dispatch={dispatch} />
                 <div className="buttons">
                     <Btn type='submit'>Sign In</Btn>
