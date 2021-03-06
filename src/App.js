@@ -7,14 +7,14 @@ import LoginPage from './pages/loginPage/loginPage';
 //components
 import Header from './components/header/header';
 //utils
-// import { auth } from './firebase/firebase';
+import { auth } from './firebase/firebase';
 function App() {
-  // const [currentUser, setCurrentUser] = useState();
-  // useEffect(()=>{
-  //   const unsubscribe = auth.onAuthStateChanged(user =>setCurrentUser(user));
-  //   console.log(currentUser);
-  //   return unsubscribe;
-  // }, []);
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(()=>{
+    const unsubscribe = auth.onAuthStateChanged(user =>setCurrentUser(user));
+    console.log(currentUser);
+    return unsubscribe;
+  }, []);
   return (
     <div className="App">
       <Header />

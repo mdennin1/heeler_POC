@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './header.scss';
 import { ReactComponent as Logo } from  '../../assets/Logo_1.svg';
 import NAV_OPTIONS from '../../constants/navOptions';
-const header = props => {
+const Header = props => {
     return (
         <div className="header">
             <Link className="logo-container" to="/">
@@ -32,4 +32,4 @@ const header = props => {
     )
 }
 
-export default header;
+export default Header;

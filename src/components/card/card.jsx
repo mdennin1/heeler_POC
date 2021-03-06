@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function card({title, subtitle, img, imgName, children, footer}) {
+export default function Card({title, subtitle, img, imgName, children, footer}) {
     return (
         <div className='card-container'>
             {
