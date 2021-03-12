@@ -56,7 +56,9 @@ export default function CreateAccount() {
                     <FormInput type='email' label='Email' name='email' value={state.email} required dispatch={dispatch} />
                     <FormInput type='password' label='Password' name='password' value={state.password} required dispatch={dispatch} />
                     <FormInput type='password' label='Confirm Password' name='confirmPassword' value={state.confirmPassword} required dispatch={dispatch} />
-                    <Btn type='submit'>Submit</Btn>
+                    <div className='buttons'>
+                        <Btn type='submit'>Submit</Btn>
+                    </div>
                 </form>
             </div>
         </div>
