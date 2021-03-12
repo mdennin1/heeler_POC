@@ -26,9 +26,9 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
-        <Route path="/home" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/my_pets" component={MyPetsPage} />
         <Route exact path="/login" component={LoginPage} />
       </Switch>

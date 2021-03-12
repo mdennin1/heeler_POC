@@ -1,6 +1,6 @@
   
-$sub-color: grey;
-$main-color: black;
+$sub-color: rgb(175, 175, 175);
+$main-color: rgb(248, 245, 245);
 
 @mixin shrinkLabel {
   top: -14px;
@@ -31,6 +31,7 @@ $main-color: black;
 
     &:focus ~ .form-input-label {
       @include shrinkLabel();
+      color: rgba(238, 234, 234, 0.747);
     }
   }
 

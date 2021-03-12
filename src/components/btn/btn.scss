@@ -7,28 +7,29 @@
     line-height: 50px;
     padding: 5px 20px 5px 20px;
     font-size: 80%;
-    background-color: #881491; // #2d8cc5;
-    color: white;
+    background-color: rgba(160, 161, 163, 0.651); //#881491; 
+    color: rgba(245, 238, 238, 0.89);
     text-transform: uppercase;
     font-family: 'Geneva';//'Open Sans Condensed';
-    font-weight: bolder;
+    font-weight: bold;
     border: none;
+    border-radius: 25px 25px 25px 25px;
     justify-content: center;
     cursor: pointer;
   
     &:hover {
-      background-color: #bd45c5;
-      color: white;
-      border: 1px solid #881491;
+      background-color: #fff; //#bd45c5;
+      // color: white;
+      color: rgb(146, 146, 146);
+      border: 2px solid #a3a1a393;
     }
     
   &.google-sign-in{
-    background-color: #4285f4;
+    background-color: #5793f5ea;
     color: white;
     &:hover{
-      background-color: #669aee;
-      border: none;
-      border-color: #4285f4;
+      background-color: #669aeece;
+      border: 2px solid #4285f4;
     }
   }
 

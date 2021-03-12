@@ -1,0 +1,25 @@
+.sign-up {
+    width: 30vw; //380px; //30vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(125, 203, 240);
+    border: 5px solid rgb(64, 157, 201);
+    margin: 20px;
+    color: #ebeded;
+    .sign-up-content{
+        padding: 10px;
+    }
+
+    .title{
+        margin: 10px;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 5px;
+    }
+}
+*{
+    box-sizing: border-box;
+}

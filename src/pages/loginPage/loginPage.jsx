@@ -5,8 +5,8 @@ import SignIn from '../../components/signIn/signIn';
 export default function loginPage() {
     return (
         <div className='login-container'>
-            <CreateAccount className="login-option"/>
             <SignIn className="login-option" />
+            <CreateAccount className="login-option"/>
         </div>
     )
 }

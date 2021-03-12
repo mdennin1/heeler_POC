@@ -1,5 +1,9 @@
-const actions = {
-    username: 'username',
-    password: 'password',
+const login_actions = {
+    CONFIRM_PASSWORD: 'confirmPassword',
+    SET_EMAIL: 'email',
+    SET_PASSWORD: 'password',
+    SET_USERNAME: 'username',
+    SIGN_IN: 'sign in',
+    SIGN_UP: 'sign up',
 }
-export default actions;
+export default login_actions;
