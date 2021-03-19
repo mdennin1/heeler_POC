@@ -1,0 +1,33 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #a2d5f7;
+    max-height: 80vh;
+    max-width: 80vw;
+    border: 2px solid #24a3f7;
+    border-radius: 15px 15px; // 5% 5% 5%;
+    margin: 5px;
+    padding: 2%;
+    box-shadow: rgba(209, 208, 208, 0.918);
+    .card-header{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        flex-direction: column;
+        .title{
+            display: flex;
+        }.sub-title{
+            display: flex;
+        }
+    }
+    .image{}
+    .body{
+        display: flex;
+    }
+    .footer{}
+    *{
+        box-sizing: border-box;
+    }
+}

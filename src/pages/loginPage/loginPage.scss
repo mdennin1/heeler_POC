@@ -1,7 +1,11 @@
 .login-container{
     display: flex;
+    flex-direction: column;
     width: 850px;
     justify-content: space-between;
     margin: 20px auto;
-    background-color: rgba(245, 243, 243, 0.753);
+    background-color: rgb(27, 151, 218); // rgba(245, 243, 243, 0.753);
+    .login-option{
+        display: flex;
+    }
 }

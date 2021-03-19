@@ -1,15 +1,18 @@
 .header {
-    height: 10%;
+    height: 5%;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
     align-items: baseline;
     margin-bottom: 25px;
+    background-color:#fff; //rgb(137, 198, 255);
+    border-bottom: 2px solid rgb(27, 151, 218);
   
     .logo-container {
       height: 100%;
-      width: 100px;
-      padding: 25px;
+      width: 25%;
+      padding: 1%;
     }
   
     .options {
@@ -21,7 +24,7 @@
   
       .option {
         text-decoration: none;
-        color: #2d8cc5;
+        color:  rgb(27, 151, 218); //rgb(19, 92, 248);//rgb(27, 151, 218); //#2198e2;
         padding: 10px 15px;
         font-size: 100%;
         font-weight: bold;

@@ -1,5 +1,6 @@
 const login_actions = {
     CONFIRM_PASSWORD: 'confirmPassword',
+    SET_DISPLAYNAME: 'displayName',
     SET_EMAIL: 'email',
     SET_PASSWORD: 'password',
     SET_USERNAME: 'username',

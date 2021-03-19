@@ -1,0 +1,9 @@
+.my-pets-page{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    .pet-details{
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

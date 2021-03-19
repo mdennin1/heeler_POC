@@ -1,10 +1,14 @@
-import React from 'react'
-import Card from '../../components/card';
+import React, {useEffect} from 'react';
+import Card from '../../components/card/card';
+import './cardList.scss';
 
-export default function CardList(props) {
+export default function CardList({cards, children}) {
+    useEffect(()=>console.log(cards, children));
     return (
-        <div className='card-list'>
-            {props.cards?.map(card => <Card key={card.Id} {...card} />)}
-        </div>
+        <>
+            <div className='card-list'>
+                {cards?.map(card => (<Card className="card" key={card.Id} {...card} />))}
+            </div>
+        </>
     )
 }
