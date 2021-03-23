@@ -1,9 +1,22 @@
-.my-pets-page{
+// .my-pets-page{
+//     display: flex;
+//     justify-content: space-between;
+//     position: fixed;
+//     .pet-details{
+//         display: flex;
+//         justify-content: space-evenly;
+//     }
+// }
+.pets{
     display: flex;
-    justify-content: space-between;
-    position: fixed;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 3%;
     .pet-details{
+        margin: 5px;
+        padding: 20px;
         display: flex;
-        justify-content: space-evenly;
+        width: 33vw;
+        height: auto; //30vh;
     }
 }

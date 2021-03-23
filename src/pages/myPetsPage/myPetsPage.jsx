@@ -10,6 +10,13 @@ export default function myPetsPage() {
         { Id: 32, name: 'huxley', age: 5, weight: 55, breed: 'golden-doodle', disposition: 'friendly'},
         { Id: 48, name: 'zooey', age: 3, weight: 65, breed: 'golden-doodle', disposition: 'gulpy' }
     ];
-    const buildPetCards = myPets => myPets?.map(pet=>({Id: pet.Id, title: pet.name, subtitle: pet.breed, body: <PetDetails {...pet}/>}));
-    return (<CardList className='pet-details' cards={buildPetCards(myPets)} />);
+    return(
+        <div className='pets'>
+            {
+                myPets?.map(pet => (<PetDetails className='pet-details' key={pet.Id} {...pet} />))
+            }
+        </div>
+    );
+    // const buildPetCards = myPets => myPets?.map(pet=>({Id: pet.Id, title: pet.name, subtitle: pet.breed, body: <PetDetails {...pet}/>}));
+    // return (<CardList className='pet-details' cards={buildPetCards(myPets)} />);
 }

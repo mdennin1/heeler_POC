@@ -8,12 +8,20 @@ export default function PetDetails({Id, name, age, weight, breed, disposition, p
     return (
         <>
             <div className='pet-details-container'>
-                <span className='pet-photo'>{photo}</span>&nbsp;
-                <span className='pet-detail'>Name: {name}</span>&nbsp;
-                <span className='pet-detail'>Age: {age}</span>&nbsp;
-                <span className='pet-detail'>Breed(s): {breed}</span>&nbsp;
-                <span className='pet-detail'>Weight: {weight}</span>&nbsp;
-                <span className='pet-detail'>Disposition: {disposition}</span>
+                {/* <span className='pet-photo'>{photo}</span>&nbsp; */}
+                <div
+                    className='pet-photo'
+                    style={{
+                    backgroundImage: `url(${photo})`
+                    }}
+                />
+                <div className='pet-details'>
+                    <span className='pet-detail'>Name: {name}</span>&nbsp;
+                    <span className='pet-detail'>Age: {age}</span>&nbsp;
+                    <span className='pet-detail'>Breed(s): {breed}</span>&nbsp;
+                    <span className='pet-detail'>Weight: {weight}</span>&nbsp;
+                    <span className='pet-detail'>Disposition: {disposition}</span>
+                </div>
             </div>
         </>
     )
