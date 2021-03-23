@@ -16,11 +16,11 @@ export default function PetDetails({Id, name, age, weight, breed, disposition, p
                     }}
                 />
                 <div className='pet-details'>
-                    <span className='pet-detail'>Name: {name}</span>&nbsp;
-                    <span className='pet-detail'>Age: {age}</span>&nbsp;
-                    <span className='pet-detail'>Breed(s): {breed}</span>&nbsp;
-                    <span className='pet-detail'>Weight: {weight}</span>&nbsp;
-                    <span className='pet-detail'>Disposition: {disposition}</span>
+                    <span className='pet-detail'><b>Name:</b>&nbsp;{name}</span>
+                    <span className='pet-detail'><b>Age:&nbsp;</b>{age}</span>
+                    <span className='pet-detail'><b>Breed(s):&nbsp;</b>{breed}</span>
+                    <span className='pet-detail'><b>Weight:&nbsp;</b>{weight}</span>
+                    <span className='pet-detail'><b>Disposition:&nbsp;</b>{disposition}</span>
                 </div>
             </div>
         </>
