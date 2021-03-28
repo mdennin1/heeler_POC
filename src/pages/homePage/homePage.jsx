@@ -1,13 +1,15 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../assets/Logo_1.svg';
-
-export default function homePage() {
+//components
+import PetInfoCard from '../../components/petInfoCard/petInfoCard';
+//
+const HomePage =() => {
     return (
         <div className='home-page'>
-            {/* <Logo className='background-logo' /> */}
             <div className='home-page-container'>
-                heeler
+                <PetInfoCard />
             </div>
         </div>
     )
 }
+//
+export default HomePage;

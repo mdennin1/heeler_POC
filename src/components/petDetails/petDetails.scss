@@ -1,12 +1,13 @@
 .pet-details-container{
     justify-content: space-evenly;
-    padding: 2%;
-    margin: 1.5%;
-    height: 100%;
-    width: 30vw; 
+    padding: 1%;
+    margin: 1%;
+    height: 50vh;
+    width: 40vw; 
     background-color: #a2d5f7; // rgb(235, 235, 235);
     border: 2px solid  #24a3f7; // rgba(104, 104, 104, 0.808);
     border-radius: 15px 15px;
+    box-sizing:  border-box; //content-box;
     opacity: 0.70;
     &:hover {
         opacity: 1.0;
@@ -27,6 +28,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
+        margin: 1px;
         .pet-detail{
             display: flex;
             height: auto;

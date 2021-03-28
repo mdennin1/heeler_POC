@@ -1,0 +1,25 @@
+$heeler-blue: #1b97da;
+$bg-color: #ccebfa;
+.card{
+    display:flex;
+    position: relative;
+    padding: 2%;
+    margin: 2%;
+    height: 45vh;
+    width: 40vw;
+    border-radius: 15px 15px;
+    border: 2px solid $heeler-blue;
+    opacity: .9;
+    background-color: $bg-color;
+    &:hover{
+        opacity: 1;
+    }
+    .photo{
+        background-image: url();
+    }
+    .info{
+        display: flex;
+        // justify-content: space-evenly;
+        margin: 1px;
+    }
+}
