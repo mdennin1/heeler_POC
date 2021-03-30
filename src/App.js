@@ -18,8 +18,8 @@ function App() {
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapshot=>{
-          console.log(`%ccurrent user snapshot: ${JSON.stringify(snapshot.data())}`, 'color: green');
-          setUser({...snapshot.data()})
+          setUser({...snapshot.data()});
+          console.log(`%ccurrent user: ${JSON.stringify(user)}`, 'color: green');
         });
       }
       setUser(null);
