@@ -3,16 +3,16 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    position: sticky; //relative;
+    position: sticky;
     align-items: baseline;
     margin-bottom: 25px;
-    background-color:#fff; //rgb(137, 198, 255);
+    background-color:#fff;
     border-bottom: 3px solid rgb(27, 151, 218);
     box-sizing: border-box;
   
     .logo-container {
-      max-height: 5%;
-      height: 60px;
+      max-height: 5vh;
+      height: 5vh;
       max-width: 25%;
       width: 100%;
       padding: 1%;
@@ -28,7 +28,7 @@
   
       .option {
         text-decoration: none;
-        color:  rgb(27, 151, 218); //rgb(19, 92, 248);//rgb(27, 151, 218); //#2198e2;
+        color:  rgb(27, 151, 218);
         padding: 10px 15px;
         font-size: 100%;
         font-weight: bold;

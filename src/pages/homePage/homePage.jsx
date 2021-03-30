@@ -1,4 +1,5 @@
 import React from 'react';
+import './homePage.scss';
 //components
 import PetInfoCard from '../../components/petInfoCard/petInfoCard';
 //
