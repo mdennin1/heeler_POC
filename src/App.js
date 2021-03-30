@@ -25,7 +25,7 @@ function App() {
       setUser(null);
     });
     return unsubscribe;
-  }, []);
+  }, [user]);
   return (
     <div className="App">
       <Header />
