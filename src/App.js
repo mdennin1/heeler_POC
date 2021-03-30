@@ -12,7 +12,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { loginState } from './recoil/atoms/loginState';
 function App() {
-  const [ user, setUser ] = useRecoilState(loginState)
+  const [ user, setUser ] = useRecoilState(loginState);
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(async userAuth =>{
       if(userAuth){
@@ -24,12 +24,11 @@ function App() {
       }
       setUser(null);
     });
-    console.log(`currentUser: ${JSON.stringify(user)}`);
     return unsubscribe;
   }, []);
   return (
     <div className="App">
-      <Header currentUser={user} />
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/my_pets" component={MyPetsPage} />
