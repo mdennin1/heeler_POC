@@ -1,10 +1,12 @@
 import React from 'react';
 import './myPetsDropdown.scss';
+import Btn from '../../components/btn/btn';
 //
-const MyPetsDropdown = () =>{
+const MyPetsDropdown = (history) =>{
     return (
-        <div className='container'>
+        <div className='dropdown-container'>
             dropdown
+            <Btn className='add-pet-btn'>Add a Pet</Btn>
         </div>
     )
 }

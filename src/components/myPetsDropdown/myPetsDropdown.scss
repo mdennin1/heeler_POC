@@ -1,0 +1,32 @@
+.dropdown-container{
+    position: absolute;
+    width: 240px;
+    max-height: 40vh;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid  rgb(27, 151, 218);
+    border-radius: 15px 15px;
+    background-color: #FFF;
+    top: 100px;
+    right: 20px;
+    z-index: auto; //5;
+    
+    .empty-message {
+        font-size: 18px;
+        margin: 50px auto;
+    }
+    
+    .pet{
+        height: 240px;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .add-pet-btn{
+        margin-top: auto;
+    }
+      
+}
