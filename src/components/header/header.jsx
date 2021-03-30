@@ -4,7 +4,11 @@ import './header.scss';
 import { ReactComponent as Logo } from  '../../assets/Logo_blackText_v3.svg';
 import NAV_OPTIONS from '../../constants/navOptions';
 import { auth } from '../../firebase/firebase';
-const Header = props => {
+//recoil
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userInfo } from '../../recoil/selectors/loginSelectors';
+const Header = () => {
+    const user = useRecoilValue(userInfo);
     return (
         <div className="header">
             <Link className="logo-container" to="/">
@@ -14,7 +18,7 @@ const Header = props => {
                 {
                     NAV_OPTIONS.map(nav=>{
                         const regex = /_/;
-                        if(nav === 'login' && props.currentUser){
+                        if(nav === 'login' && user){
                             return(
                                 <div key={nav} className="option" onClick={()=>auth.signOut()}>
                                     SIGN OUT

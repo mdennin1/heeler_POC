@@ -4,32 +4,38 @@ import ACTIONS from '../../constants/actions.js';
 import Btn from '../../components/btn/btn';
 import FormInput from '../../components/formInput/formInput';
 import './signIn.scss';
+//recoil
+import { useRecoilState } from 'recoil';
+import { loginState } from '../../recoil/atoms/loginState';
 //
+
+
 const reducer = (state, action) => {
     switch (action.type){
         case ACTIONS.SET_EMAIL:
         case ACTIONS.SET_PASSWORD:
-        case ACTIONS.SET_USERNAME:
             return state = {...state, [action.type]: action.payload};
-        case ACTIONS.SIGN_IN:
-            return state = {};
+        // case ACTIONS.SIGN_IN:
+        //     return state = {};
         default:
             break;
     }
 }
 const SignIn = (props) => {
     const [state, dispatch] = useReducer(reducer, {});
+    const [ userInfo, setUserInfo] = useRecoilState(loginState);
     useEffect(()=>{
-        console.log(`%cprops: ${JSON.stringify(props)}, state: ${JSON.stringify(state)}`, 'color:blue;');
-    }, [state]);
+        console.log(`%cuserInfo: ${JSON.stringify(userInfo)}, state: ${JSON.stringify(state)}`, 'color:blue;');
+    }, [userInfo]);
     //
     const handleSignIn = async (event) =>{
         console.log(`%chandleSignIn fired`, 'color:green');
         event.preventDefault();
         try{
             const user = await auth.signInWithEmailAndPassword(state.email, state.password);
-            console.log(`%cuser: ${JSON.stringify(user)}`, 'font-size:large; color: green'); 
-            dispatch({type: ACTIONS.signIn});  
+            console.log(`%cuser: ${JSON.stringify(user)}`, 'font-size:large; color: green');
+            setUserInfo(user); 
+            // dispatch({type: ACTIONS.signIn});  
         }catch(error){
             console.error(error);
         }
