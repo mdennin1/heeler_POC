@@ -4,6 +4,9 @@ import Btn from '../../components/btn/btn';
 import {auth, createUserProfileDocument } from '../../firebase/firebase';
 import ACTIONS from '../../constants/actions';
 import './createAccount.scss';
+//recoil
+import { useRecoilState } from 'recoil';
+import { loginState } from '../../recoil/atoms/loginState';
 
 const reducer = (state, action) =>{
     const type = action.type;
@@ -24,6 +27,7 @@ const reducer = (state, action) =>{
 
 export default function CreateAccount() {
     const [state, dispatch] = useReducer(reducer, {});
+    const [ userInfo, setUserInfo ] = useRecoilState(loginState);
     useEffect(()=>{
         console.log(`state: ${JSON.stringify(state)}`);
     });
@@ -32,10 +36,9 @@ export default function CreateAccount() {
         if(state.password === state.confirmPassword) {
             try{
                 const { user } = await auth.createUserWithEmailAndPassword(state.email, state.password);
-                // console.log(user);
                 const {displayName} = state;
                 await createUserProfileDocument(user, {displayName});
-                dispatch({type: ACTIONS.SIGNUP});
+                // dispatch({type: ACTIONS.SIGNUP});
             } catch(error){
                 console.error(JSON.stringify(error));
             }
