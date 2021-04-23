@@ -1,17 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './petInfoCard.scss';
+//recoil
+import { useRecoilValue } from 'recoil';
+// import { selectedPet } from '../../recoil/selectors/petSelectors';
+// import {selectedPetState} from '../../recoil/atoms/myPets';
 
-const PetInfoCard = () =>{
+const PetInfoCard = (pet) =>{
+    useEffect(() =>{
+        console.log(`PetInfoCard pet: ${JSON.stringify(pet)}`);
+    }, [pet]);
     return(
-        <div className='card'>
-            pet card
-            <div className='photo'>
-                photo
-            </div>
-            <div className='info'>
-                info
-            </div>
-        </div>
+        <>
+            <form className='card'>
+                { pet ? 
+                    (
+                        <div className='pet-details'>
+                            <div className='input-display'>
+                                <label htmlFor="nameInput">
+                                    Name:&nbsp;
+                                    <input id="nameInput" value={pet.name} />
+                                </label>
+                            </div>
+                            <div className='input-display'>
+                                <label htmlFor="dobInput">
+                                    Date of Birth:&nbsp;
+                                    <input id="dobInput" type="date" value={pet.dob} />
+                                </label>
+                            </div>
+                            <div className='input-display'>
+                                <label htmlFor="breedsInput">
+                                    Breeds:&nbsp;
+                                    <input id="breedsInput" value={pet.breeds} />
+                                </label>
+                            </div>
+                        </div>
+                    ) : null
+                }
+            </form>
+        </>
     );
 }
 //

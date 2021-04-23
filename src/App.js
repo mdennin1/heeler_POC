@@ -11,9 +11,10 @@ import { auth, createUserProfileDocument } from './firebase/firebase';
 //recoil
 import { useRecoilState } from 'recoil';
 import { loginState } from './recoil/atoms/loginState';
-function App() {
+const App = () => {
   const [ user, setUser ] = useRecoilState(loginState);
   useEffect(()=>{
+    //
     const unsubscribe = auth.onAuthStateChanged(async userAuth =>{
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);

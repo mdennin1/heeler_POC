@@ -4,88 +4,76 @@ import PET_ACTIONS from '../../constants/petActions';
 //recoil
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {loginState} from '../../recoil/atoms/loginState';
-import { myPetsState } from '../../recoil/atoms/myPets';
-import {selectedPet} from '../../recoil/selectors/petSelectors';
+// import {selectedPet} from '../../recoil/selectors/petSelectors';
+import {myPetsState, selectedPetState, selectedPetIdState} from '../../recoil/atoms/myPets';
 //components
 import FormInput from '../../components/formInput/formInput';
 import Btn from '../../components/btn/btn';
 //firebase
 import {firestore} from '../../firebase/firebase';
-
-// const reducer = (state, action) =>{
-//     const {type, payload} = action;
-//     switch(type){
-//         case PET_ACTIONS.nameChange:
-//             state = {...state, name: payload};
-//             setPet(state);
-//             return state;
-//         case PET_ACTIONS.dobChange:
-//             return {...state, dob: payload};
-//         case PET_ACTIONS.photoChange:
-//             return {...state, photo: payload};
-//         case PET_ACTIONS.addPet:
-//         default:
-//             break;
-//     }
-// }
-const AddPetForm = () =>{
-    const [pet, setPet] = useRecoilState(selectedPet);
+//
+const AddPetForm = props =>{
+    const {pet} = props;
+    const [myPets, setMyPets] = useRecoilState(myPetsState);
+    const [selectedPet, setSelectedPet] = useRecoilState(selectedPetState);
     const reducer = (state, action) =>{
         const {type, payload} = action;
         switch(type){
             case PET_ACTIONS.nameChange:
-                state = {...state, name: payload};
-                return state;
+                return {...state, name: payload};
             case PET_ACTIONS.dobChange:
                 return {...state, dob: payload};
             case PET_ACTIONS.photoChange:
                 return {...state, photo: payload};
             case PET_ACTIONS.addPet:
-                const newPet = createAPet(state);
-                setMyPets({...myPets, [newPet.id]: newPet});
-                setPet(newPet);
+                createAPet(state);
                 break;
+            case PET_ACTIONS.defaultState:
+                return {...payload};
             default:
                 break;
         }
     }
-    const userInfo = useRecoilValue(loginState);
-    const [state, dispatch] = useReducer(reducer, pet);
-    const [myPets, setMyPets] = useRecoilState(myPetsState);
+    const handleCreateClick = event =>{
+        event.preventDefault();
+        createAPet(state);
+    }
+    const userInfo = useRecoilState(loginState);
+    const [state, dispatch] = useReducer(reducer, {});
     
     useEffect(()=>{
-        console.log(`pet: ${JSON.stringify(pet)}`);
-        console.log(`myPets: ${JSON.stringify(myPets)}`);
-    }, [pet, myPets]);
-    const petRef = pet ? firestore.doc(`pets/${pet.id}`) : firestore.collection('pets/');
-    const createAPet = async pet => {
-        console.log('%ccreateAPet() fired!', 'color:red;');
-        const petSnapshot = petRef.get();
-        if (!petSnapshot.exists) {
-            const createdAt = new Date();
-            try {
-              await petRef.set({
-                ...pet,
-                createdAt,
-                owner: userInfo.id
-              });
-            } catch (error) {
-              console.log('error creating pet', error.message);
-            }
+        const defaultAction = {type: PET_ACTIONS.defaultState, payload: pet};
+        if(!!pet) {
+            dispatch(defaultAction);
         }
+        // !!pet ? dispatch(defaultAction) : null;
+        console.log(`%cselected pet in addPetForm: ${JSON.stringify(selectedPet)}`, 'color:purple;');
+        console.log(`%cuserInfo in addPetForm: ${JSON.stringify(userInfo)}`, 'color:blue;');
+    }, [myPets, userInfo]);
 
+    const createAPet = async (pet) => {
+        const createdAt = new Date();
+        const petsRef = firestore.collection('pets');
+        userInfo?.id ? await petsRef.add({...pet, createdAt, owner: userInfo.id}) : alert('not logged in. cant create a pet');
+        const query = petsRef.where('owner', '==', userInfo.id);
+        const querySnapshot = await query.get();
+        const changes = querySnapshot.docChanges();
+        const newRecord = changes?.find(change => change.type === 'added')?.doc?.data();
+        console.log(`added record: ${JSON.stringify(newRecord)}`);
+        const recordId = changes?.find(change => change.type === 'added')?.doc?.id;
+        console.log(`recordId: ${recordId}`);
+        await setMyPets({...myPets, [recordId]: newRecord});
+        console.log(`myPets: ${JSON.stringify(myPets)}`);
+        //
     }
     return(
-        <div>
-            <div className='add-pet-container'>
-                <FormInput label="Pet's name" name="name" value={state.name} dispatch={dispatch} />
-                <FormInput label='Birthdate' name='dob' value={state.dob} dispatch={dispatch} />
-            </div>
-            {
-                pet.id ? (<Btn onClick={()=>reducer({type: PET_ACTIONS.savePet, payload: pet})}>Save</Btn>) :
-                (<Btn onClick={()=>dispatch({type: PET_ACTIONS.addPet, payload: pet})}>Add Pet</Btn>)
-            }
-        </div>
+        <form onSubmit={e=>handleCreateClick(e)}>
+            <label htmlFor="name-input">
+                Name:
+                <input id="name-input" value={state.name} onChange={e=>dispatch({type: PET_ACTIONS.nameChange, payload: e.target.value})}/>
+            </label>
+            <button id='add-a-pet' type='submit' value='submit'>Add Pet</button>
+        </form>
     );
 }
 //

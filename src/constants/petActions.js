@@ -4,4 +4,5 @@ const PET_ACTIONS = {
     nameChange: 'NAME_CHANGE',
     photoChange: 'PHOTO_CHANGE',
     savePet: 'SAVE_PET',
+    defaultState: 'DEFAULT_STATE',
 }

@@ -12,7 +12,11 @@ export const showAddPetState = atom({
     key: 'showAddPet',
     default: false
 });
-export const selectedPetId = atom({
+export const selectedPetIdState = atom({
     key: 'selectedPetId',
     default: null,
+});
+export const selectedPetState = atom({
+    key: 'selectedPet',
+    default: null
 });
