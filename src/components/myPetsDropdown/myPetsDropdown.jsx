@@ -23,7 +23,7 @@ const MyPetsDropdown = (history) =>{
     }
     useEffect(()=>{
         console.log(showAddPet);
-        console.log(`selectedPet from pet dropdown: ${JSON.stringify(selectedPet)}`, 'color:purple;');
+        console.log(`%cselectedPet from pet dropdown: ${JSON.stringify(selectedPet)}`, 'color:purple;');
     },[showAddPet])
     return (
         <div className='dropdown-container'>
