@@ -1,9 +1,5 @@
 import React, {useEffect} from 'react';
 import './petInfoCard.scss';
-//recoil
-import { useRecoilValue } from 'recoil';
-// import { selectedPet } from '../../recoil/selectors/petSelectors';
-// import {selectedPetState} from '../../recoil/atoms/myPets';
 
 const PetInfoCard = (pet) =>{
     useEffect(() =>{

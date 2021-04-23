@@ -4,7 +4,6 @@ import PET_ACTIONS from '../../constants/petActions';
 //recoil
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {loginState} from '../../recoil/atoms/loginState';
-// import {selectedPet} from '../../recoil/selectors/petSelectors';
 import {myPetsState, selectedPetState, selectedPetIdState} from '../../recoil/atoms/myPets';
 //components
 import FormInput from '../../components/formInput/formInput';
@@ -12,10 +11,8 @@ import Btn from '../../components/btn/btn';
 //firebase
 import {firestore} from '../../firebase/firebase';
 //
-const AddPetForm = props =>{
-    const {pet} = props;
+const AddPetForm = ({pet}) =>{
     const [myPets, setMyPets] = useRecoilState(myPetsState);
-    const [selectedPet, setSelectedPet] = useRecoilState(selectedPetState);
     const reducer = (state, action) =>{
         const {type, payload} = action;
         switch(type){
@@ -42,12 +39,10 @@ const AddPetForm = props =>{
     const [state, dispatch] = useReducer(reducer, {});
     
     useEffect(()=>{
-        const defaultAction = {type: PET_ACTIONS.defaultState, payload: pet};
         if(!!pet) {
+            const defaultAction = {type: PET_ACTIONS.defaultState, payload: pet};
             dispatch(defaultAction);
         }
-        // !!pet ? dispatch(defaultAction) : null;
-        console.log(`%cselected pet in addPetForm: ${JSON.stringify(selectedPet)}`, 'color:purple;');
         console.log(`%cuserInfo in addPetForm: ${JSON.stringify(userInfo)}`, 'color:blue;');
     }, [myPets, userInfo]);
 

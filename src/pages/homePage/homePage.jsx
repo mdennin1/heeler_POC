@@ -14,7 +14,7 @@ const HomePage =() => {
     const [selectedPet, setSelectedPet] = useRecoilState(selectedPetState);
     const userInfo = useRecoilValue(loginState);
     const loadPets = userInfo => {
-        // console.log(`loadPets() fired, userInfo param ${!!userInfo}`);
+        console.log(`loadPets() fired, userInfo param ${!!userInfo}`);
         if(!!userInfo){
             const petsCollectionRef = firestore.collection('pets');
             const myPetsQuery = petsCollectionRef.where('owner', '==', userInfo?.id);
@@ -31,7 +31,7 @@ const HomePage =() => {
         }
     }
     useEffect(()=>{
-        loadPets(userInfo);
+        // loadPets(userInfo);
         console.log(`%cmyPets: ${JSON.stringify(myPets)}`, 'color:purple;font-size:large;');
         console.log(`%cuser from home page: ${JSON.stringify(userInfo)}`, 'color:blue;');
     }, [myPets, userInfo]);
