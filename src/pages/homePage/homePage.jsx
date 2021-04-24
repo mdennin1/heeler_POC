@@ -11,7 +11,10 @@ import PetInfoCard from '../../components/petInfoCard/petInfoCard';
 const HomePage =() => {
     const selectedPet = useRecoilValue(selectedPetState);
     const userInfo = useRecoilValue(loginState);
-    useEffect(()=>console.log(`%cuserInfo: ${JSON.stringify(userInfo)}`, 'color:blue;'));
+    const petCollectionRef = firestore.collection('pets');
+    useEffect(()=>{
+        console.log(`%chome page userInfo: ${JSON.stringify(userInfo)}`, 'color:blue;');
+    });
     return (
         <div className='home-page'>
             <div className='home-page-container'>

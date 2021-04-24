@@ -2,8 +2,9 @@ import React, {useReducer, useEffect} from 'react';
 import './addPetForm.scss';
 import PET_ACTIONS from '../../constants/petActions';
 //recoil
-import {useRecoilValue} from 'recoil';
+import { useRecoilState, useRecoilValue} from 'recoil';
 import {loginState} from '../../recoil/atoms/loginState';
+import {showAddPetState} from '../../recoil/atoms/myPets';
 //components
 import FormInput from '../../components/formInput/formInput';
 import Btn from '../../components/btn/btn';
@@ -11,6 +12,7 @@ import Btn from '../../components/btn/btn';
 import {firestore} from '../../firebase/firebase';
 //
 const AddPetForm = ({pet}) =>{
+    const [showAddPetModal, setShowAddPetModal] = useRecoilState(showAddPetState);
     const reducer = (state, action) =>{
         const {type, payload} = action;
         switch(type){
@@ -31,6 +33,7 @@ const AddPetForm = ({pet}) =>{
         }
     }
     const handleCreateClick = event =>{
+        console.log(`handleCreateClick() fired!`);
         event.preventDefault();
         createAPet(state);
     }
@@ -43,7 +46,7 @@ const AddPetForm = ({pet}) =>{
             dispatch(defaultAction);
         }
         console.log(`%cadd pet form state: ${JSON.stringify(state)}`, 'color:purple;');
-    }, [state]);
+    }, [state, showAddPetModal]);
 
     const createAPet = async (pet) => {
         if(userInfo?.id){
@@ -59,10 +62,11 @@ const AddPetForm = ({pet}) =>{
             // console.log(`recordId: ${recordId}`);
             // await setMyPets({...myPets, [recordId]: newRecord});
             // console.log(`myPets: ${JSON.stringify(myPets)}`);
+            setShowAddPetModal(false);
         }
     }
     return(
-        <form onSubmit={e=>handleCreateClick(e)}>
+        <form onSubmit={e=>handleCreateClick}>
             <label htmlFor="name-input">
                 Name:&nbsp;
                 <input id="name-input" value={state.name} onChange={e=>dispatch({type: PET_ACTIONS.nameChange, payload: e.target.value})}/>

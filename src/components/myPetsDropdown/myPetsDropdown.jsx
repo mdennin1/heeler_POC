@@ -5,7 +5,7 @@ import PetSelectorOption from '../../components/petSelectorOption/petSelectorOpt
 //
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {showAddPetState, myPetsState, selectedPetState} from '../../recoil/atoms/myPets';
-import {myPetsIdsSelector} from '../../recoil/selectors/petSelectors';
+import {myPetsListSelector} from '../../recoil/selectors/petSelectors';
 //components
 import Modal from '../../components/modal/modal';
 import AddPetForm from '../../components/addPetForm/addPetForm';
@@ -14,28 +14,34 @@ const MyPetsDropdown = (history) =>{
     const [showAddPet, setShowAddPet] = useRecoilState(showAddPetState);
     const [selectedPet, setSelectedPet] = useRecoilState(selectedPetState);
     const myPets = useRecoilValue(myPetsState);
-    const petIds = useRecoilValue(myPetsIdsSelector);
+    const myPetsList = useRecoilValue(myPetsListSelector);
     const handlePetSelect = event => {
-        const petId = event.target.petId;
-        console.log(petId);
+        const petId = event.target.id;
+        console.log(`petId: ${petId}`, 'color:red;');
         const selected_pet = myPets[petId];
         setSelectedPet({...selected_pet});
     }
     useEffect(()=>{
         console.log(showAddPet);
         console.log(`%cselectedPet from pet dropdown: ${JSON.stringify(selectedPet)}`, 'color:purple;');
-    },[showAddPet])
+    },[showAddPet, selectedPet])
     return (
         <div className='dropdown-container'>
-            { 
-                petIds?.map(petId =><PetSelectorOption key={petId} pet={myPets[petId]} onClick={e=>handlePetSelect} />)
+            {
+                myPetsList ? myPetsList?.map(pet => <PetSelectorOption key={pet.id} id={pet.id} pet={pet} onClick={e=>{
+                    const petId = e.target.id;
+                    console.error(petId);
+                    e.preventDefault();
+                    const selection = myPets[petId];
+                    setSelectedPet(selection);
+                }} />) : null
             }
             <Btn className='add-pet-btn' onClick={()=>setShowAddPet(!showAddPet)}>Add a Pet</Btn>
             {
-                showAddPet ? (<Modal showModal={showAddPet} setShowModal={setShowAddPet}><AddPetForm /></Modal>) : null
+                showAddPet ? (<Modal showModal={showAddPet} setShowModal={setShowAddPet}><AddPetForm pet={selectedPet} /></Modal>) : null
             }
         </div>
-    )
+    );
 }
 //
 export default MyPetsDropdown;

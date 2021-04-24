@@ -15,4 +15,11 @@ export const myPetsIdsSelector = selector({
         const myPets = get(myPetsState);
         return !!myPets ? Object.keys(myPets) : [];
     }
-})
+});
+export const myPetsListSelector = selector({
+    key: 'myPetsListSelector',
+    get: ({get}) =>{
+        const myPets = get(myPetsState);
+        return !!myPets ? Object.values(myPets) : [];
+    }
+});
